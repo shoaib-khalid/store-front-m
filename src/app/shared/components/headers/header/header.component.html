@@ -1,0 +1,69 @@
+<header class="header header-28 bg-transparent">
+    <div *ngIf="isClosed" class="promo-top w-100 h-auto text-center" style="background-color: #87bbc7;">
+        <h4 class="font-weight-normal text-uppercase text-white m-0"><marquee class="container"> Sorry, we are closed. Store Timing: {{openTime}}-{{closeTime}}</marquee></h4>
+    </div>
+    <!-- <div class="header-top font-weight-normal text-light">
+        <div [ngClass]="containerClass" style="padding: 1rem;"> -->
+            <!-- <div class="header-left">
+                <div class="header-dropdown">
+                    <a href="javascript:;">Usd</a>
+                    <div class="header-menu">
+                        <ul>
+                            <li><a href="javascript:;">Eur</a></li>
+                            <li><a href="javascript:;">Usd</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="header-dropdown">
+                    <a href="javascript:;">Eng</a>
+                    <div class="header-menu">
+                        <ul>
+                            <li><a href="javascript:;">English</a></li>
+                            <li><a href="javascript:;">French</a></li>
+                            <li><a href="javascript:;">Spanish</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div> -->
+
+            <!-- <div class="header-right">
+                <ul class="top-menu">
+                    <li>
+                        <a href="javascript:;">Links</a>
+                        <ul>
+                            <li><a href="tel:#"><i class="icon-phone"></i>Call: {{phoneNumber}}</a></li>
+                            <li><molla-compare-menu></molla-compare-menu></li>
+                            <li><a routerLink="/pages/about">About Us</a></li>
+                            <li><a routerLink="/pages/contact">Contact Us</a></li>
+                            <li><a href="javascript:;" (click)="showLoginModal($event)"><i class="icon-user"></i>Login</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div> -->
+        <!-- </div>
+    </div> -->
+    <div class="sticky-wrapper" [style.height]="utilsService.isSticky? utilsService.stickyHeight + 'px' : '' ">
+        <div class="header-middle sticky-header" [class.fixed]="utilsService.isSticky">
+            <div [ngClass]="containerClass">
+                <div class="header-left">
+                    <molla-mobile-button></molla-mobile-button>
+
+                    <a routerLink="/" class="logo">
+                        <img [src]="logoUrl" alt="Logo" width="75" height="25">
+                    </a>
+
+                    <molla-main-menu></molla-main-menu>
+                </div>
+
+                <div class="header-right">
+                    <!-- <molla-header-search style="width: 100%;"></molla-header-search> -->
+
+                    <!-- <molla-wishlist-menu></molla-wishlist-menu> -->
+
+                    <molla-cart-menu></molla-cart-menu>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

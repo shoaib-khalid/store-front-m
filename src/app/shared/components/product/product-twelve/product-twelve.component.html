@@ -1,0 +1,77 @@
+<div class="product mb-0 rounded-0 w-100">
+    <figure class="product-media bg-white">
+        <!-- <span class="product-label label-new" *ngIf="product.new">New</span> -->
+        <!-- <span class="product-label label-sale" *ngIf="product.productInventories[0].itemDiscount">Sale</span> -->
+        <!-- <span class="product-label label-top" *ngIf="product.top">Top</span> -->
+        <span class="product-label label-out" *ngIf="product.status === 'OUT OF STOCK'">{{product.status}}</span>
+
+        <a (click)="onClick()" href="javascript:;">
+            <molla-image src="{{product.thumbnailUrl}}" alt="Product" class="product-image">
+            </molla-image>
+            <!-- <molla-image [src]="{{product.thumbnailUrl}}" alt="Product" class="product-image-hover"
+                *ngIf="product.sm_pictures[1]"></molla-image> -->
+        </a>
+
+        <a href="javascript:;" class="btn-product-zoom btn-quickview" title="Quick view"
+                (click)="quickView( $event )"><span>quick view</span></a>
+    </figure>
+
+    <div class="product-body position-static bg-transparent">
+        <!-- <div class="product-cat overflow-hidden my-2 mt-0 font-weight-normal">
+            <a routerLink="/catalogue/list" [queryParams]="{category: product.categoryId}">
+                <span>{{product.categoryId}} </span>
+            </a>
+        </div> -->
+
+        <h3 class="product-title overflow-hidden letter-spacing-normal">
+            <a (click)="onClick()" href="javascript:;">{{product.name}}</a>
+        </h3>
+
+        <div class="product-price font-weight-bold align-items-center d-flex mb-0" *ngIf="product.productInventories[0].itemDiscount else elseBlock">
+            <span class="new-price">{{currency}} {{product.productInventories[0].itemDiscount.discountedPrice.toFixed(2)}}</span>
+            <span class="old-price">{{currency}} {{product.productInventories[0].price.toFixed(2)}}</span>
+        </div>
+        <ng-template #elseBlock>
+            <div class="product-price font-weight-bold align-items-center d-flex mb-0">{{currency}} {{product.productInventories[0].price.toFixed(2)}}
+            </div>
+        </ng-template>
+
+        <!-- <ng-template #elseBlock>
+            <div class="product-price font-weight-bold align-items-center d-flex mb-0" *ngIf="minPrice == maxPrice else elseBlock">${{ minPrice.toFixed(2) }}</div>
+            <ng-template #elseBlock>
+                <div class="product-price font-weight-bold align-items-center d-flex mb-0" *ngIf="product.variants.length == 0 else elseBlock">
+                    <span class="new-price">${{ minPrice.toFixed(2) }}</span>
+                    <span class="old-price">${{ maxPrice.toFixed(2) }}</span>
+                </div>
+                <ng-template #elseBlock>
+                    <div class="product-price font-weight-bold align-items-center d-flex mb-0">${{minPrice.toFixed(2)}}&ndash;${{maxPrice.toFixed(2)}}</div>
+                </ng-template>
+            </ng-template>
+        </ng-template> -->
+
+        <!-- <div class="product-sold position-absolute" *ngIf="isShownSold">
+            <div class="product-sold-val" [style.width]="( product.sold / ( product.sold + product.stock ) ) * 100 + '%'"></div>
+        </div>
+        <span class="sold-text font-weight-normal text-light position-absolute" *ngIf="isShownSold">Sold: {{ product.sold }}</span> -->
+        <div class="product-footer bg-white rounded-0 d-block position-absolute">
+            <!-- <div class="ratings-container text-truncate">
+                <div class="ratings">
+                    <div class="ratings-val" [style.width]="product.ratings * 20 + '%'"></div>
+                    <span class="tooltip-text font-weight-normal">{{ product.ratings.toFixed(2) }}</span>
+                </div>
+                <span class="ratings-text font-weight-normal">( {{ product.review }} Reviews )</span>
+            </div> -->
+            <div class="product-details-action">
+                <a href="javascript:;" class="btn-product btn-cart"
+                    [class.btn-disabled]="product.status ==='OUT OF STOCK'" (click)="addToCart( $event )"><span>add to cart</span></a>
+        
+                <!-- <div class="details-action-wrapper">
+                    <a href="javascript:;" class="btn-product btn-wishlist" [class.added-to-wishlist]="isInWishlist()"
+                        (click)="addToWishlist($event)">
+                        <span>{{ isInWishlist() ? 'Go' : 'Add' }} to Wishlist</span>
+                    </a>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

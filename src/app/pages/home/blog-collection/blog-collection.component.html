@@ -1,0 +1,19 @@
+<div class="bg-lighter blog-section pt-6 pb-5">
+    <div class="container">
+        <div class="heading py-2 pb-0">
+            <div class="heading-left">
+                <h2 class="title align-self-center letter-spacing-normal text-center text-md-left" contentAnim aniName="blurIn">From Our Blog</h2>
+            </div>
+        </div>
+        <owl-carousel carouselClasses="owl-simple carousel-with-shadow" [options]="sliderOption"
+            *ngIf="!loaded else loadedBlock">
+            <div class="skel-pro" *ngFor="let i of [1,2,3,4,5]"></div>
+        </owl-carousel>
+        <ng-template #loadedBlock>
+            <owl-carousel carouselClasses="owl-simple carousel-with-shadow" [options]="sliderOption">
+                <molla-post-four [post]="post" *ngFor="let post of posts">
+                </molla-post-four>
+            </owl-carousel>
+        </ng-template>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<article class="entry">
+    <figure class="entry-media mb-0" [style.padding-top]="paddingTop">
+        <a [routerLink]="['/blog/single/default/' + post.slug]">
+            <molla-image [src]="SERVER_URL + post.image[0].url" alt="image desc" [fixedPt]="paddingTop"></molla-image>
+        </a>
+    </figure>
+
+    <div class="entry-body">
+        <div class="entry-meta">
+            <a [routerLink]="['/blog/single/default/' + post.slug]">{{ post.date | date }}</a>
+            <span class="meta-separator">|</span>
+            <a [routerLink]="['/blog/single/default/' + post.slug]">{{ post.comments }} Comments</a>
+        </div>
+
+        <h2 class="entry-title">
+            <a [routerLink]="['/blog/single/default/' + post.slug]">{{ post.title }}</a>
+        </h2>
+
+        <div class="entry-content">
+            <p class="font-weight-light text-light">{{ post.content }}</p>
+            <a [routerLink]="['/blog/single/default/' + post.slug]" class="read-more p-0">Read More</a>
+        </div>
+    </div>
+</article>

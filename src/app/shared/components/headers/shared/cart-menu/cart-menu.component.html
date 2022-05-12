@@ -1,0 +1,49 @@
+<div class="dropdown cart-dropdown">
+    <a href="javascript:;" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+        <div class="icon position-relative">
+            <i class="icon-shopping-cart"></i>
+            <span class="cart-count">{{ cartService.qtyTotal }}</span>
+        </div>
+        <span class="cart-txt font-weight-normal">{{currency}} {{cartService.priceTotal.toFixed(2) }}</span>
+    </a>
+
+    <div class="dropdown-menu dropdown-menu-right" [ngClass]="{'text-center': cartService.cart.length == 0}">
+        <p *ngIf="cartService.cart.length == 0 else elseBlock">No products in the cart.</p>
+
+        <ng-template #elseBlock>
+            <div class="dropdown-cart-products">
+                <div class="product justify-content-between" *ngFor="let product of cartService.cart; let i = index">
+                    <div class="product-cart-details">
+                        <h4 class="product-title">
+                            <a href="javascript:;" (click)="onClick(product)">{{ product.productName }}</a>
+                        </h4>
+
+                        <span class="cart-product-info">
+                            <span class="cart-product-qty">{{ product.quantity }}</span> x {{currency}} {{ product.productPrice.toFixed(2)}}
+                        </span>
+                    </div>
+
+                    <figure class="product-image-container">
+                        <a class="product-image">
+                            <img [src]="product.productInventory.product.thumbnailUrl" alt="product" width="50" height="50">
+                        </a>
+                    </figure>
+
+                    <a href="javascript:;" class="btn-remove" title="Remove Product" (click)="removeFromCart( $event, product, i )"><i class="icon-close"></i></a>
+                </div>
+            </div>
+
+            <div class="dropdown-cart-total">
+                <span>Total</span>
+
+                <span class="cart-total-price">{{currency}} {{cartService.priceTotal.toFixed(2)}}</span>
+            </div>
+
+            <div class="dropdown-cart-action">
+                <a routerLink="/cart" class="btn btn-primary">View Cart</a>
+                <a routerLink="/checkout" class="btn btn-outline-primary-2"><span>Checkout</span><i
+                        class="icon-long-arrow-right"></i></a>
+            </div>
+        </ng-template>
+    </div>
+</div>

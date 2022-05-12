@@ -1,0 +1,48 @@
+<div class="product d-flex flex-row overflow-hidden mb-0 p-0 shadow-none product-list">
+    <figure class="mb-0 product-media bg-white d-flex justify-content-center align-items-center">
+        <a [routerLink]="['/product/default/'+ product.slug]">
+            <molla-image [src]="SERVER_URL + product.sm_pictures[0].url" alt="Product" class="product-image">
+            </molla-image>
+            <molla-image [src]="SERVER_URL + product.sm_pictures[1].url" alt="Product" class="product-image-hover"
+                *ngIf="product.sm_pictures[1]"></molla-image>
+        </a>
+
+    </figure>
+
+    <div class="product-body">
+        <div class="product-cat text-left">
+            <span *ngFor="let cat of product.category; let i =index">
+                <a [routerLink]="['/shop/sidebar/list']" [queryParams]="{category: cat.slug}">{{ cat.name }}</a>{{ i < product.category.length - 1 ? ',' : '' }}
+            </span>
+        </div>
+        
+        <h3 class="product-title letter-spacing-normal font-size-normal text-left mb-0">
+            <a [routerLink]="['/product/default/'+ product.slug]">{{ product.name }}</a>
+        </h3>
+        
+        <div class="product-price mb-1 text-dark" *ngIf="!product.stock || product.stock == 0 else elseBlock">
+            <span class="out-price">${{ product.price.toFixed(2) }}</span>
+        </div>
+
+        <ng-template #elseBlock>
+            <div class="product-price mb-1 text-dark" *ngIf="minPrice == maxPrice else elseBlock">${{ minPrice.toFixed(2) }}</div>
+            <ng-template #elseBlock>
+                <div class="product-price mb-1 text-dark" *ngIf="product.variants.length == 0 else elseBlock">
+                    <span class="new-price">${{ minPrice.toFixed(2) }}</span>
+                    <span class="old-price">${{ maxPrice.toFixed(2) }}</span>
+                </div>
+                <ng-template #elseBlock>
+                    <div class="product-price mb-1 text-dark">${{minPrice.toFixed(2)}}&ndash;${{maxPrice.toFixed(2)}}</div>
+                </ng-template>
+            </ng-template>
+        </ng-template>
+        
+        <div class="ratings-container mb-0">
+            <div class="ratings font-size-normal">
+                <div class="ratings-val font-size-normal" [style.width]="product.ratings * 20 + '%'"></div>
+                <span class="tooltip-text">{{ product.ratings.toFixed(2) }}</span>
+            </div>
+            <span class="ratings-text ml-2">( {{ product.review }} Reviews )</span>
+        </div>
+    </div>
+</div>

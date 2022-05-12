@@ -1,0 +1,41 @@
+<main class="main home-page skeleton-body">
+
+    <div class="page-content">
+        <div class="intro-section bg-image" style="background-color: #fff;">
+            <div class="container">
+                <owl-carousel [options]="introSlider" [items]="storeBannerUrls" [carouselClasses]="['owl-theme', 'sliding']" >
+                    <div class="item" *ngFor="let bannerUrl of storeBannerUrls;let i = index">
+                        <div>
+                            <div class="intro-slide" style="background-image: url({{bannerUrl}}); background-size: 100% 100%;"></div>
+                        </div>
+                    </div>
+                </owl-carousel>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <hr class="m-0">
+        <div class="cat-section mt-4 mb-3" contentAnim aniName="fadeInUpShorter">
+            <div class="row text-center">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-8col" *ngFor="let category of categories; let i=index">
+                    <div class="cat bg-white pt-1 mb-2">
+                        <div class="cat-image">
+                            <a routerLink="/catalogue/list" [queryParams]="{category: category.id, name: category.name}">
+                                <molla-image src="{{category.thumbnailUrl}}" width="137" height="137" fixedPt="137px"></molla-image>
+                            </a>
+                        </div>
+                        <div class="cat-content text-center">
+                            <a routerLink="/catalogue/list" [queryParams]="{category: category.id, name: category.name}" class="cat-title">{{category.name}}</a>
+                            <h4 class="cat-count letter-spacing-normal d-block font-weight-light"></h4>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <molla-trendy-collection [products]="products" [loaded]="loaded"></molla-trendy-collection>
+
+</main>

@@ -1,0 +1,15 @@
+<div class="recommend-section py-2 pb-lg-5 pb-3 border-0">
+    <div class="container">
+        <div class="heading d-flex flex-column flex-md-row">
+            <h2 class="title align-self-center letter-spacing-normal text-center text-md-left" contentAnim aniName="blurIn">Recommended For You</h2>
+        </div>
+        <owl-carousel carouselClasses="owl-simple owl-theme products carousel-equal-height owl-5" [options]="sliderOption" *ngIf="!loaded else elseBlock">
+            <div class="skel-pro" *ngFor="let item of [1,2,3,4,5]"></div>
+        </owl-carousel>
+        <ng-template #elseBlock>
+            <owl-carousel carouselClasses="owl-simple products owl-theme carousel-equal-height owl-5" [options]="sliderOption">
+                <molla-product-twelve *ngFor="let product of products" [product]="product"></molla-product-twelve>
+            </owl-carousel>
+        </ng-template>
+    </div>
+</div>

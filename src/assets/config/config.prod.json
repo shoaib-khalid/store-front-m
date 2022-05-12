@@ -1,0 +1,12 @@
+{
+    "env": {
+        "name": "prod"
+    },
+    "serviceUrl": {
+        "userServiceURL": "https://api.symplified.biz/user-service/v1/",
+        "productServiceURL": "https://api.symplified.biz/product-service/v1/",
+        "payServiceURL": "https://api.symplified.biz/payment-service/v1/",
+        "orderServiceURL": "https://api.symplified.biz/order-service/v1/",
+        "deliveryServiceURL": "https://api.symplified.biz/delivery-service/v1/"
+    }
+}

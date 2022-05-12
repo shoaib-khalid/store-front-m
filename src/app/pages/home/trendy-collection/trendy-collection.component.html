@@ -1,0 +1,23 @@
+<div class="flash-section bg-lighter">
+    <div class="container">
+        <div class="heading d-flex flex-column flex-md-row">
+            <h2 class="title align-self-center letter-spacing-normal text-center text-md-left" contentAnim aniName="blurIn">Featured Products</h2>
+            <!-- <div class="d-flex justify-content-center mt-1 mt-md-0">
+                <h6 class="countdown-title align-self-center mb-0 font-weight-normal letter-spacing-normal">
+                    Ends in:</h6>
+                <molla-count-down until="2023-09-08" format="HMS" wrap="deal-countdown align-self-center is-countdown" class="d-flex">
+                </molla-count-down>
+            </div> -->
+        </div>
+        <div class="flash-content mt-2 py-2 pb-7">
+            <owl-carousel carouselClasses="owl-simple carousel-equal-height owl-3" [options]="sliderOption" *ngIf="!loaded else elseBlock">
+                <div class="skel-pro" *ngFor="let item of [1,2,3,4,5,6]"></div>
+            </owl-carousel>
+            <ng-template #elseBlock>
+                <owl-carousel carouselClasses="owl-simple owl-theme carousel-equal-height owl-3" [options]="sliderOption">
+                    <molla-product-twelve *ngFor="let product of products" [product]="product" [isShownSold]="true"></molla-product-twelve>
+                </owl-carousel>
+            </ng-template>
+        </div>
+    </div>
+</div>
