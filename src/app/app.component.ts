@@ -74,6 +74,7 @@ export class AppComponent {
 	}
 
 	async ngOnInit() {
+		await this.storeService.parseStoreFromUrl()
 		this.changeIcon()
 		this.breadcrumbService.breadcrumbChanged.subscribe(async crumbs => {
 			this.titleService.setTitle(await this.createTitle(crumbs))
