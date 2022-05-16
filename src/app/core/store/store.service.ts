@@ -23,6 +23,7 @@ export class StoreService {
             domain = domain.split('.')[0].replace(/^(https?:|)\/\//, '');
         }
 
+        domain = domain.split('.')[0].replace(/^(https?:|)\/\//, '');
 
         const store: Store = await this.getStoreByDomainName(domain);
 
