@@ -1,14 +1,11 @@
-RewriteEngine On
-
-RewriteCond %{HTTP_HOST} ^d-themes.com$
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://d-themes.com/angular/molla/demo4/$1 [NC,R,L]
-
-# If an existing asset or directory is requested go to it as it is
-RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -f [OR]
-RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -d
-RewriteRule ^ - [L]
-
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    RewriteRule ^index\.html$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /index.html [L]
+</IfModule>
 # One month for most static assets
 <filesMatch ".(css|jpg|jpeg|png|gif|js|ico|woff2|ttf|woff)$">
 Header set Cache-Control "max-age=31536000, public"
