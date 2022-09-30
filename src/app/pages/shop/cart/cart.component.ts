@@ -49,13 +49,11 @@ export class CartComponent implements OnInit {
 	async onClick(product) {
 		this.category = await this.storeService.getCategoryById(product.productInventory.product.categoryId)
 
-		let seoUrl = product.productInventory.product.seoUrl.split('/')
-		let seoName = seoUrl[seoUrl.length - 1]
+		let seoName = product.productInventory.product.seoName
 		if (seoName[seoName.length - 1] == "}") {
 			seoName = seoName.slice(0, seoName.length - 1)
 		}
 
-		console.log("SeoName", seoName)
 		this.router.navigate(['/' + this.category.name.split(' ').join('-') + '/' + seoName])
 	}
 
