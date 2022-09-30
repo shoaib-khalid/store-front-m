@@ -18,11 +18,6 @@ export class StoreService {
     async parseStoreFromUrl() {
         let domain = location.origin;
 
-        if (isDevMode()) {
-            domain = 'maliktechsports.dev-my.symplified.ai';
-            domain = domain.split('.')[0].replace(/^(https?:|)\/\//, '');
-        }
-
         domain = domain.split('.')[0].replace(/^(https?:|)\/\//, '');
 
         const store: Store = await this.getStoreByDomainName(domain);

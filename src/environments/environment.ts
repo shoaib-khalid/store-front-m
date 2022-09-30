@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   demo: 'demo28',
+  name: 'dev',
   SERVER_URL: 'http://localhost:1337',
 };
 

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import { Category } from '../classes/category';
+import { AppConfig } from 'src/app/app.config';
 
 @Injectable({
 	providedIn: 'root'
@@ -11,17 +12,53 @@ import { Category } from '../classes/category';
 
 export class ApiService {
 
-	productServiceURL = 'https://api.symplified.it/product-service/v1/'
-	orderServiceURL = 'https://api.symplified.it/order-service/v1/'
-	deliveryServiceURL = 'https://api.symplified.it/delivery-service/v1/'
+	deliveryServiceURL: string;
+	payServiceURL: string;
+	userServiceURL: string;
+	orderServiceURL: string;
+	productServiceURL: any;
+
 	token = 'accessToken'
 
 	constructor(private http: HttpClient) {
+		this.getBaseUrls();
 	}
 
-	/**
-	 * Get Products
-	 */
+	getBaseUrls() {
+		try {
+		  this.userServiceURL = AppConfig.settings.serviceUrl.userServiceURL;
+		  this.productServiceURL = AppConfig.settings.serviceUrl.productServiceURL;
+		  this.orderServiceURL = AppConfig.settings.serviceUrl.orderServiceURL;
+		  this.deliveryServiceURL =
+			AppConfig.settings.serviceUrl.deliveryServiceURL;
+		  this.payServiceURL = AppConfig.settings.serviceUrl.payServiceURL;
+		} catch (ex) {
+		  console.error(
+			"Failed to get API baseURLs from config file. Assigning hardcoded values instead.",
+			ex
+		  );
+		  let currBaseUrl = location.origin;
+		  let splitUrl = currBaseUrl.split(".");
+		  if (splitUrl.length === 3) {
+			this.userServiceURL = "https://api.symplified.biz/user-service/v1/";
+			this.productServiceURL =
+			  "https://api.symplified.biz/product-service/v1/";
+			this.payServiceURL = "https://api.symplified.biz/payment-service/v1/";
+			this.orderServiceURL = "https://api.symplified.biz/order-service/v1/";
+			this.deliveryServiceURL =
+			  "https://api.symplified.biz/delivery-service/v1/";
+		  } else {
+			this.userServiceURL = "https://api.symplified.it/user-service/v1/";
+			this.productServiceURL =
+			  "https://api.symplified.it/product-service/v1/";
+			this.orderServiceURL = "https://api.symplified.it/order-service/v1/";
+			this.deliveryServiceURL =
+			  "https://api.symplified.it/delivery-service/v1/";
+			this.payServiceURL = "https://api.symplified.it/payment-service/v1/";
+		  }
+		}
+	  }
+
 	public fetchShopData(params: any, perPage: number, initial = 'shop'): Observable<any> {
 		let temp = initial;
 		if (!initial.includes('?')) {
