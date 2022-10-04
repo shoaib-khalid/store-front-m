@@ -539,4 +539,20 @@ export class ApiService {
 
 		return this.http.get(url, header);
 	}
+
+	getPlatformConfig(domainName) {
+		const header = {
+			headers: new HttpHeaders().set("Authorization", `Bearer ${this.token}`),
+			params: {
+				domain: '.' + domainName
+			}
+		};
+
+		const url = 
+			this.productServiceURL + 
+			"platformconfig";
+
+		return this.http.get(url, header);
+
+	}
 }

@@ -21,6 +21,7 @@ export class IndexComponent implements OnInit {
 	storeInfo: Store
 	categories: Category[]
 	products: any = [];
+	platformConfig: any
 	posts = [];
 	topProducts = [];
 	featuredProducts = [];
@@ -70,13 +71,15 @@ export class IndexComponent implements OnInit {
 
 		Promise.all([
 			this.storeService.getStoreInfoByStoreId(),
+			this.storeService.getPlatformConfig(),
 			this.storeService.getCategories(),
 			this.storeService.getStoreProducts(),
 		])
 			.then((values) => {
 				this.storeInfo = values[0]
-				this.categories = values[1]
-				this.products = values[2]
+				this.platformConfig = values[1]
+				this.categories = values[2]
+				this.products = values[3]
 				this.populateAssets();
 				this.loaded = true
 			})

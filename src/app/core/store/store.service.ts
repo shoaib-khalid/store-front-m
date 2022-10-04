@@ -18,7 +18,10 @@ export class StoreService {
     async parseStoreFromUrl() {
         let domain = location.origin;
 
-        domain = domain.split('.')[0].replace(/^(https?:|)\/\//, '');
+        if (isDevMode)
+            domain = domain.split('.')[0].replace(/^(https?:|)\/\//, '');
+        else
+            domain = domain.replace(/^(https?:|)\/\//, '').split(':')[0];
 
         const store: Store = await this.getStoreByDomainName(domain);
 
@@ -184,5 +187,30 @@ export class StoreService {
                 }
             );
         });
+    }
+
+    getPlatformConfig() {
+
+        let fullUrl = location.origin;
+
+        let sanatiseUrl = fullUrl.replace(/^(https?:|)\/\//, '').split(':')[0];
+
+        let domainNameArr = sanatiseUrl.split('.');
+        domainNameArr.shift();
+
+        let domain = domainNameArr.join('.');
+
+        domain = "dev-pk.symplified.ai"
+
+        return new Promise((resolve, reject) => {
+            this.apiService.getPlatformConfig(domain).subscribe(
+                (res: any)=> {
+                    resolve(res.data[0]);
+                },
+                (error) => {
+                    reject(error)
+                }
+            )
+        })
     }
 }
