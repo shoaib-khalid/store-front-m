@@ -200,8 +200,6 @@ export class StoreService {
 
         let domain = domainNameArr.join('.');
 
-        domain = "dev-pk.symplified.ai"
-
         return new Promise((resolve, reject) => {
             this.apiService.getPlatformConfig(domain).subscribe(
                 (res: any)=> {
