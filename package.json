@@ -1,6 +1,6 @@
 {
   "name": "store-front-m",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -68,7 +68,7 @@
     "@angular/compiler-cli": "12.0.0",
     "@types/googlemaps": "^3.39.14",
     "@types/jasmine": "3.10.2",
-    "@types/node": "16.11.7",
+    "@types/node": "^16.11.7",
     "codelyzer": "^6.0.2",
     "jasmine-core": "3.10.1",
     "jasmine-spec-reporter": "~7.0.0",

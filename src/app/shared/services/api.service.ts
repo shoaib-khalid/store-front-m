@@ -39,7 +39,7 @@ export class ApiService {
 		  );
 		  let currBaseUrl = location.origin;
 		  let splitUrl = currBaseUrl.split(".");
-		  if (splitUrl.length === 3) {
+		  if (splitUrl.length <= 3) {
 			this.userServiceURL = "https://api.symplified.biz/user-service/v1/";
 			this.productServiceURL =
 			  "https://api.symplified.biz/product-service/v1/";
