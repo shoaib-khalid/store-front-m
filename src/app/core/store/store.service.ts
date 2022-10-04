@@ -18,10 +18,10 @@ export class StoreService {
     async parseStoreFromUrl() {
         let domain = location.origin;
 
-        if (isDevMode)
-            domain = domain.split('.')[0].replace(/^(https?:|)\/\//, '');
-        else
-            domain = domain.replace(/^(https?:|)\/\//, '').split(':')[0];
+        // if (isDevMode)
+        //     domain = domain.split('.')[0].replace(/^(https?:|)\/\//, '');
+        // else
+        domain = domain.replace(/^(https?:|)\/\//, '').split(':')[0];
 
         const store: Store = await this.getStoreByDomainName(domain);
 
